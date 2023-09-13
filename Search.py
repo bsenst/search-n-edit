@@ -4,7 +4,8 @@ import pandas as pd
 import streamlit as st
 
 # Sample DataFrame
-df = pd.read_csv("parsed_docx.csv", sep="#")
+df = pd.read_csv("parsed_docx_en.csv", sep="#")
+df_es = pd.read_csv("parsed_docx_es.csv", sep="#")
 
 # Streamlit app
 st.title("Search")
@@ -15,9 +16,13 @@ st.caption(
 )
 
 search_term = st.selectbox("Select a search term:", ["", "migrant", "indigenous", "workers"])
+language = st.selectbox("Select a language:", ["English"])
 
 # Filter the DataFrame based on the search term
-filtered_df = df[df.apply(lambda row: row.astype(str).str.contains(search_term, case=False).any(), axis=1)]
+if language == "English":
+    filtered_df = df[df.apply(lambda row: row.astype(str).str.contains(search_term, case=False).any(), axis=1)]
+else:
+    filtered_df = df_es[df.apply(lambda row: row.astype(str).str.contains(search_term, case=False).any(), axis=1)]
 
 # Display the filtered DataFrame
 if search_term:
