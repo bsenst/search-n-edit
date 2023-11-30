@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 
 # Sample DataFrame
-df = pd.read_csv("parsed_docx.csv", sep="#")
+df = pd.read_csv("parsed_docx_en.csv", sep="#")
 
 # Streamlit app
 st.title("Editor")
